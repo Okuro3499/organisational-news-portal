@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class NewsTest {
     @Test
-    public void newsInstantiatesCorrectly(){
+    public void newsInstantiatesCorrectly() {
         News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
         assertEquals(true, news instanceof News);
     }
@@ -34,6 +34,20 @@ public class NewsTest {
         News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
         news.setNewsTopic("Ps5");
         assertEquals("Ps5", news.getNewsTopic());
+    }
+
+    @Test
+    public void setsNewsDescription() {
+        News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
+        news.setNewsDescription("Photos of Ps5 leaks ahead of release");
+        assertEquals("Photos of Ps5 leaks ahead of release", news.getNewsDescription());
+    }
+
+    @Test
+    public void setsDepartmentId() {
+        News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
+        news.setDepartmentId(1);
+        assertEquals(1, news.getDepartmentId());
     }
 
 }
