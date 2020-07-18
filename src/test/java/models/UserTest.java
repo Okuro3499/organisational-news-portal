@@ -29,4 +29,10 @@ public class UserTest {
         assertEquals("Maintains System", user.getRole());
     }
 
+    @Test
+    public void setUsername() {
+        User user = new User ("Gideon",1, "Maintains System");
+        user.setUsername("Gideon");
+        assertEquals("Gideon", user.getUsername());
+    }
 }
