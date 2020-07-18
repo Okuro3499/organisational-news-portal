@@ -9,6 +9,7 @@ public class Department {
     public Department(String name, String description, int totalemployees) {
         this.name = name;
         this.description = description;
+        this.totalemployees= totalemployees;
     }
 
     public String getName() {
@@ -29,5 +30,9 @@ public class Department {
 
     public void setDescription(String description) {
         { this.description = description; }
+    }
+
+    public void setTotalEmployees(int totalemployees) {
+        {this.totalemployees = totalemployees;}
     }
 }
