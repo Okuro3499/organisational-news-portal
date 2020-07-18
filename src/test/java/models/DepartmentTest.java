@@ -16,4 +16,10 @@ public class DepartmentTest {
         Department department = new Department ("Finance", "Maintains Financial records", 13);
         assertEquals("Finance", department.getName());
     }
+
+    @Test
+    public void getsDepartmentDescriptionName() {
+        Department department = new Department ("Finance", "Maintains Financial records", 13);
+        assertEquals("Maintains Financial records", department.getDescription());
+    }
 }
