@@ -49,4 +49,11 @@ public class DepartmentTest {
         department.setTotalEmployees(13);
         assertEquals(13,department.getTotalEmployees());
     }
+
+    @Test
+    public void setId() {
+        Department department = new Department("Finance", "Maintains Financial records", 13);
+        department.setId(1);
+        assertEquals(1,department.getId());
+    }
 }
