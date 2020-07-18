@@ -28,4 +28,11 @@ public class DepartmentTest {
         Department department = new Department("Finance", "Maintains Financial records", 13);
         assertEquals(13,department.getTotalEmployees());
     }
+
+    @Test
+    public void setsDepartmentName() {
+        Department department = new Department("Finance", "Maintains Financial records", 13);
+        department.setName("Finance");
+        assertEquals("Finance", department.getName());
+    }
 }

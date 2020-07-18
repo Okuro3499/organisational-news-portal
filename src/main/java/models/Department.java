@@ -22,4 +22,8 @@ public class Department {
     public int getTotalEmployees() {
         return totalemployees;
     }
+
+    public void setName(String name) {
+        { this.name = name; }
+    }
 }
