@@ -30,4 +30,8 @@ public class User {
     public void setDepartmentId(int departmentid) {
         this.departmentid = departmentid;
     }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 }
