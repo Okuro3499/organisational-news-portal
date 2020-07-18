@@ -1,7 +1,7 @@
 package models;
 
 public class News {
-    private final String topic;
+    private String topic;
     private final String description;
     private final int departmentid;
 
@@ -21,5 +21,9 @@ public class News {
 
     public int getDepartmentId() {
         return departmentid;
+    }
+
+    public void setNewsTopic(String topic) {
+        { this.topic = topic;}
     }
 }
