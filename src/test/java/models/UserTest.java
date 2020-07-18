@@ -49,4 +49,11 @@ public class UserTest {
         user.setRole("Maintains System");
         assertEquals("Maintains System", user.getRole());
     }
+
+    @Test
+    public void setId() {
+        User user = new User ("Gideon",1, "Maintains System");
+        user.setId(1);
+        assertEquals(1,user.getId());
+    }
 }
