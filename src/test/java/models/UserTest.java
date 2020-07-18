@@ -17,4 +17,16 @@ public class UserTest {
         assertEquals("Gideon", user.getUsername());
     }
 
+    @Test
+    public void getDepartmentIdCorrectly() {
+        User user = new User ("Gideon",1, "Maintains System");
+        assertEquals(1, user.getDepartmentId());
+    }
+
+    @Test
+    public void getUserRoleCorrectly() {
+        User user = new User ("Gideon",1, "Maintains System");
+        assertEquals("Maintains System", user.getRole());
+    }
+
 }
