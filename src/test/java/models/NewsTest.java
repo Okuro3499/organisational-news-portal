@@ -11,4 +11,15 @@ public class NewsTest {
         assertEquals(true, news instanceof News);
     }
 
+    @Test
+    public void getsNewsTopic() {
+        News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
+        assertEquals("Ps5", news.getNewsTopic());
+    }
+
+    @Test
+    public void getsNewsDescription() {
+        News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
+        assertEquals("Photos of Ps5 leaks ahead of release", news.getNewsDescription());
+    }
 }

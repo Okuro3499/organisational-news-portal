@@ -14,13 +14,13 @@ public class DepartmentTest {
     @Test
     public void getsDepartmentName() {
         Department department = new Department("Finance", "Maintains Financial records", 13);
-        assertEquals("Finance", department.getName());
+        assertEquals("Finance", department.getDepartmentName());
     }
 
     @Test
     public void getsDepartmentDescription() {
         Department department = new Department("Finance", "Maintains Financial records", 13);
-        assertEquals("Maintains Financial records", department.getDescription());
+        assertEquals("Maintains Financial records", department.getDepartmentDescription());
     }
 
     @Test
@@ -33,14 +33,14 @@ public class DepartmentTest {
     public void setsDepartmentName() {
         Department department = new Department("Finance", "Maintains Financial records", 13);
         department.setName("Finance");
-        assertEquals("Finance", department.getName());
+        assertEquals("Finance", department.getDepartmentName());
     }
 
     @Test
     public void setsDepartmentDescription() {
         Department department = new Department("Finance", "Maintains Financial records", 13);
         department.setDescription("Maintains Financial records");
-        assertEquals("Maintains Financial records", department.getDescription());
+        assertEquals("Maintains Financial records", department.getDepartmentDescription());
     }
 
     @Test

@@ -14,11 +14,11 @@ public class Department {
         this.totalemployees= totalemployees;
     }
 
-    public String getName() {
+    public String getDepartmentName() {
         return name;
     }
 
-    public String getDescription() {
+    public String getDepartmentDescription() {
         return description;
     }
 
