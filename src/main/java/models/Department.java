@@ -6,4 +6,7 @@ public class Department {
     private int totalemployees;
 
 
+    public Department(String name, String description, int totalemployees) {
+
+    }
 }
