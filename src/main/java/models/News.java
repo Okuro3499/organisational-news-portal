@@ -3,10 +3,12 @@ package models;
 public class News {
     private final String topic;
     private final String description;
+    private final int departmentid;
 
     public News(String topic, String description, int departmentid) {
         this.topic = topic;
         this.description = description;
+        this.departmentid = departmentid;
     }
 
     public String getNewsTopic() {
@@ -15,5 +17,9 @@ public class News {
 
     public String getNewsDescription() {
         return description;
+    }
+
+    public int getDepartmentId() {
+        return departmentid;
     }
 }

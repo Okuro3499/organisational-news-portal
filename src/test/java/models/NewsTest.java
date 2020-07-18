@@ -22,4 +22,10 @@ public class NewsTest {
         News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
         assertEquals("Photos of Ps5 leaks ahead of release", news.getNewsDescription());
     }
+
+    @Test
+    public void getsDepartmentId() {
+        News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
+        assertEquals(1, news.getDepartmentId());
+    }
 }
