@@ -18,4 +18,8 @@ public class Department {
     public String getDescription() {
         return description;
     }
+
+    public int getTotalEmployees() {
+        return totalemployees;
+    }
 }
