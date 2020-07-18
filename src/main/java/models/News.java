@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class News {
     private String topic;
     private String description;
@@ -42,5 +44,21 @@ public class News {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof News)) return false;
+        News news = (News) o;
+        return departmentid == news.departmentid &&
+                id == news.id &&
+                Objects.equals(topic, news.topic) &&
+                Objects.equals(description, news.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(topic, description, departmentid, id);
     }
 }
