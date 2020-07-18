@@ -50,4 +50,11 @@ public class NewsTest {
         assertEquals(1, news.getDepartmentId());
     }
 
+    @Test
+    public void setId() {
+        News news = new News("Ps5", "Photos of Ps5 leaks ahead of release", 1);
+        news.setId(1);
+        assertEquals(1, news.getId());
+    }
+
 }

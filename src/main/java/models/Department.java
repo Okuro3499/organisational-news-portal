@@ -27,15 +27,15 @@ public class Department {
     }
 
     public void setName(String name) {
-        { this.name = name; }
+        this.name = name;
     }
 
     public void setDescription(String description) {
-        { this.description = description; }
+        this.description = description;
     }
 
     public void setTotalEmployees(int totalemployees) {
-        {this.totalemployees = totalemployees;}
+        this.totalemployees = totalemployees;
     }
 
     @Override
