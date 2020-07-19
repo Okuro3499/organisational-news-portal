@@ -36,6 +36,13 @@ public class Sql2oUserDaoTest {
       assertEquals(1, testUser.getId());
    }
 
+   @Test
+   public void getAll() throws Exception {
+      User user1 = setupUser();
+      User user2 = setupUser();
+      assertEquals(2,userDao.getAll().size());
+   }
+
    //helpers
    public User setupUser() {
       User user = new User("Gideon", 1, "Maintains System");
