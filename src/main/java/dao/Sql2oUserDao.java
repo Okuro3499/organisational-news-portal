@@ -48,8 +48,8 @@ public class Sql2oUserDao implements UserDao {
     @Override
     public List<User> getAllUsersByDepartment(int departmentid) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM users WHERE departmentid = :departmentid")
-                    .addParameter("departmentid", departmentid)
+            return con.createQuery("SELECT * FROM users WHERE departmentid = :departmentId")
+                    .addParameter("departmentId", departmentid)
                     .executeAndFetch(User.class);
         }
     }

@@ -18,10 +18,12 @@ public class Sql2oDepartmentDao implements DepartmentDao {
 
     @Override
     public void add(Department department) {
-        String sql = "INSERT INTO department (name , description, totalemployees) VALUES (:name, :description, :totalemployees)";
+        String sql = "INSERT INTO department (name,description,totalemployees) VALUES (:name,:description,:totalemployees)";
         try(Connection con =sql2o.open()) {
             int id = (int) con.createQuery(sql, true)
-                    .bind(department)
+                    .addParameter("name",department.getDepartmentName())
+                    .addParameter("description",department.getDepartmentDescription())
+                    .addParameter("totalemployees",department.getTotalEmployees())
                     .executeUpdate()
                     .getKey();
             department.setId(id);
@@ -50,17 +52,17 @@ public class Sql2oDepartmentDao implements DepartmentDao {
     @Override
     public List<User> getAllUsers(int departmentid) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM users WHERE departmentid = :departmentid")
-                    .addParameter("departmentid", departmentid)
+            return con.createQuery("SELECT * FROM users WHERE departmentid = :departmentId")
+                    .addParameter("departmentId", departmentid)
                     .executeAndFetch(User.class);
         }
     }
 
     @Override
-    public List<News> getAllNewsForDepartments(int departmentid) {
+    public List<News> getAllNewsForDepartments(int departmentId) {
         try(Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE departmentid = departmentid")
-                    .addParameter("departmentid", departmentid)
+            return con.createQuery("SELECT * FROM news WHERE departmentid = :departmentId")
+                    .addParameter("departmentId", departmentId)
                     .executeAndFetch(News.class);
         }
     }

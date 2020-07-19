@@ -3,9 +3,9 @@ package models;
 import java.util.Objects;
 
 public class Department {
-    private String name;
-    private String description;
-    private int totalemployees;
+    public String name;
+    public String description;
+    public int totalemployees;
     private int id;
 
     public Department(String name, String description, int totalemployees) {
@@ -26,9 +26,7 @@ public class Department {
         return totalemployees;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
     public void setDescription(String description) {
         this.description = description;
