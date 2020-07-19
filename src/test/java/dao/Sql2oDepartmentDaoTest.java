@@ -48,6 +48,13 @@ public class Sql2oDepartmentDaoTest {
         assertEquals(0, departmentDao.getAll().size());
     }
 
+    @Test
+    public void findByIdReturnsCorrectDepartment() throws Exception {
+        Department testDepartment = setupDepartment();
+        Department otherDepartment = setupDepartment();
+        assertEquals(testDepartment, departmentDao.findById(testDepartment.getId()));
+    }
+
 
     //helpers
     public Department setupDepartment() {
