@@ -13,7 +13,7 @@ public interface NewsDao {
     //read
     List<News> getAll();
     News findById(int id);
-    List <Department> getAllDepartmentsByNews(int departmentid);
+    List <News> getAllNewsByDepartments(int departmentid);
 
     //delete
     void deleteById(int id);
