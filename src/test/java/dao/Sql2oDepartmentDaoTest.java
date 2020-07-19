@@ -1,11 +1,14 @@
 package dao;
 
 import models.Department;
+import models.News;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -81,7 +84,22 @@ public class Sql2oDepartmentDaoTest {
         assertEquals(0, departmentDao.getAll().size());
     }
 
+    @Test
+    public void DepartmentReturnsNewsCorrectly() throws Exception {
+        News testNews = new News("BMW", "Electric car launch date revealed", 3);
+        newsDao.add(testNews);
 
+        News otherNews = new News("Agriculture", "New plant vaccine discovered", 5);
+        newsDao.add(otherNews);
+
+        Department testDepartment = setupDepartment();
+        departmentDao.add(testDepartment);
+        departmentDao.addDepartmentToNews(testDepartment, testNews);
+        departmentDao.addDepartmentToNews(testDepartment, otherNews);
+
+        News[] news = {testNews, otherNews};
+        assertEquals(Arrays.asList(news), departmentDao.getAllNewsForDepartments(testDepartment.getId()));
+    }
 
     //helpers
     public Department setupDepartment() {

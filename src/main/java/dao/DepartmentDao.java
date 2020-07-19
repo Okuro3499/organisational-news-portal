@@ -10,7 +10,7 @@ public interface DepartmentDao {
 
     //create
     void add(Department department);
-    //void addDepartmentToNews(Department department, News news);
+    void addDepartmentToNews(Department department, News news);
 
     //read
     List<Department> getAll();
@@ -21,6 +21,8 @@ public interface DepartmentDao {
     //delete
     void deleteById(int id);
     void clearAll();
+
+
 
     //update
 //    void update(int id, String name, String description, int totalemployees);

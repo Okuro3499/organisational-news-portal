@@ -32,6 +32,19 @@ public class Sql2oDepartmentDao implements DepartmentDao {
     }
 
     @Override
+    public void addDepartmentToNews(Department department, News news) {
+        String sql ="INSERT INTO departments_news (newsid, departmentid) VALUES (:newsId, :departmentId)";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("newsId", news.getId())
+                    .addParameter("departmentId", department.getId())
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public List<Department> getAll() {
         try (Connection con = sql2o.open()) {
             return con.createQuery("SELECT * FROM department")
