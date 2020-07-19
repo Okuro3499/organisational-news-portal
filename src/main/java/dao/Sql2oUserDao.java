@@ -27,4 +27,44 @@ public class Sql2oUserDao implements UserDao {
             System.out.println(ex);
         }
     }
+
+    @Override
+    public List<User> getAll() {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM users")
+                    .executeAndFetch(User.class);
+        }
+    }
+
+    @Override
+    public List<User> getAllUsersByDepartment(int departmentid) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM users WHERE departmentid = :departmentid")
+                    .addParameter("departmentid", departmentid)
+                    .executeAndFetch(User.class);
+        }
+    }
+
+    @Override
+    public void deleteById(int id) {
+        String sql = "DELETE from users WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+
+    }
+
+    @Override
+    public void clearAll() {
+        String sql = "DELETE from users";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
 }
