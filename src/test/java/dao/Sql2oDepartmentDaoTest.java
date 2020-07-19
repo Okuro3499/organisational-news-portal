@@ -55,6 +55,25 @@ public class Sql2oDepartmentDaoTest {
         assertEquals(testDepartment, departmentDao.findById(testDepartment.getId()));
     }
 
+//    @Test
+//    public void updateCorrectlyUpdatesAllFields() throws Exception {
+//        Department testDepartment = setupDepartment();
+//        departmentDao.update(testDepartment.getId(), "a", "b", 4);
+//        Department foundDepartment = departmentDao.findById(testDepartment.getId());
+//        assertEquals("a", foundDepartment.getDepartmentName());
+//        assertEquals("b", foundDepartment.getDepartmentDescription());
+//        assertEquals(4, foundDepartment.getTotalEmployees());
+//    }
+
+    @Test
+    public void deleteByIdDeletesCorrectDepartment() throws Exception {
+        Department testDepartment = setupDepartment();
+        Department otherDepartment = setupDepartment();
+        departmentDao.deleteById(testDepartment.getId());
+        assertEquals(1, departmentDao.getAll().size());
+    }
+
+
 
     //helpers
     public Department setupDepartment() {

@@ -58,10 +58,10 @@ public class Sql2oDepartmentDao implements DepartmentDao {
     }
 
     @Override
-    public List<News> getAllNewsForDepartments(int departmentId) {
+    public List<News> getAllNewsForDepartments(int departmentid) {
         try(Connection con = sql2o.open()) {
             return con.createQuery("SELECT * FROM news WHERE departmentid = :departmentId")
-                    .addParameter("departmentId", departmentId)
+                    .addParameter("departmentId", departmentid)
                     .executeAndFetch(News.class);
         }
     }
@@ -87,4 +87,18 @@ public class Sql2oDepartmentDao implements DepartmentDao {
             System.out.println(ex);
         }
     }
+
+//    @Override
+//    public void update(int id, String newName, String newDescription, int newTotalEmployees) {
+//        String sql = "UPDATE department SET (name,description,totalemployees) = (:name,:description,:totalemployees) WHERE id=:id";
+//        try(Connection con = sql2o.open()) {
+//            con.createQuery(sql)
+//                    .addParameter("name", newName)
+//                    .addParameter("description", newDescription)
+//                    .addParameter("totalemployees", newTotalEmployees)
+//                    .executeUpdate();
+//        } catch (Sql2oException ex) {
+//            System.out.println(ex);
+//        }
+//    }
 }
