@@ -1,11 +1,10 @@
-CREATE  DATABASE organisational;
-\c organisational;
+SET MODE PostgreSQL;
 
 CREATE TABLE IF NOT EXISTS department (
 id int PRIMARY KEY auto_increment,
 name VARCHAR,
 description VARCHAR,
-totalemployees INTEGER;
+totalemployees int
 );
 
 CREATE TABLE IF NOT EXISTS news (
@@ -21,5 +20,3 @@ username VARCHAR,
 departmentid int,
 role VARCHAR
 );
-
-CREATE DATABASE organisation_test WITH TEMPLATE organisation;
