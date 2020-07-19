@@ -2,6 +2,7 @@ package dao;
 
 import models.Department;
 import models.News;
+import models.User;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public interface DepartmentDao {
     //read
     List<Department> getAll();
     Department findById(int id);
+    List<User> getAllUsers(int departmentid);
     List<News> getAllNewsForDepartments(int departmentid);
 
     //delete
