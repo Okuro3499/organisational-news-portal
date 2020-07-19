@@ -73,6 +73,14 @@ public class Sql2oDepartmentDaoTest {
         assertEquals(1, departmentDao.getAll().size());
     }
 
+    @Test
+    public void clearAll() throws Exception {
+        Department testDepartment = setupDepartment();
+        Department otherDepartment = setupDepartment();
+        departmentDao.clearAll();
+        assertEquals(0, departmentDao.getAll().size());
+    }
+
 
 
     //helpers
