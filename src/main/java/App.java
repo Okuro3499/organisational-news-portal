@@ -31,5 +31,10 @@ public class App {
             response.type("application/json");
             return gson.toJson(department);
         });
+
+        get("/department", "application/json", (request, response) -> {
+            response.type("application/json");
+            return gson.toJson(departmentDao.getAll());
+        });
     }
 }
