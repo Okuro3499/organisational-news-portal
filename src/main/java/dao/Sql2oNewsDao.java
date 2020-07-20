@@ -84,11 +84,6 @@ public class Sql2oNewsDao implements NewsDao {
             System.out.println(ex);
         }
         return departments;
-//        try (Connection con = sql2o.open()) {
-//            return con.createQuery("SELECT * FROM news WHERE departmentid = :departmentId")
-//                    .addParameter("departmentId", departmentid)
-//                    .executeAndFetch(Department.class);
-//        }catch (Sql2oException ex) {
     }
 
     @Override
