@@ -3,8 +3,11 @@ import dao.Sql2oUserDao;
 import dao.Sql2oDepartmentDao;
 import dao.Sql2oNewsDao;
 import models.Department;
+import models.News;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+
+import java.util.List;
 
 import static spark.Spark.*;
 
@@ -42,6 +45,16 @@ public class App {
             int departmentId = Integer.parseInt(request.params("id"));
             response.type("application/json");
             return gson.toJson(departmentDao.findById(departmentId));
+        });
+
+        get("/department/:id/news", "application/json",(request, response) -> {
+            int departmentId = Integer.parseInt(request.params("id"));
+            Department department = departmentDao.findById(departmentId);
+
+            List<News> allNews;
+            allNews = newsDao.getAllDepartmentNews(departmentId);
+            response.type("application/json");
+            return gson.toJson(allNews);
         });
     }
 }
