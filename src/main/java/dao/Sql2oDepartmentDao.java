@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sql2oDepartmentDao implements DepartmentDao {
@@ -72,11 +73,25 @@ public class Sql2oDepartmentDao implements DepartmentDao {
 
     @Override
     public List<News> getAllNewsForDepartments(int departmentid) {
+        ArrayList<News> news = new ArrayList<>();
+
+        String joinQuery = "SELECT newsid from departments_news where departmentid = :departmentId";
+
         try(Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE departmentid = :departmentId")
+            List<Integer> allNewsIds = con.createQuery(joinQuery)
                     .addParameter("departmentId", departmentid)
-                    .executeAndFetch(News.class);
+                    .executeAndFetch(Integer.class);
+            for (Integer newsId : allNewsIds) {
+                String newsQuery = "SELECT * FROM news WHERE id = :newsId";
+                news.add(
+                        con.createQuery(newsQuery)
+                                .addParameter("newsId", newsId)
+                                .executeAndFetchFirst(News.class));
+            }
+        }catch (Sql2oException ex) {
+            System.out.println(ex);
         }
+        return news;
     }
 
     @Override
