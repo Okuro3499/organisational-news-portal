@@ -48,15 +48,15 @@ public class App {
             return gson.toJson(departmentDao.findById(departmentId));
         });
 
-        get("/department/:id/news", "application/json",(request, response) -> {
-            int departmentId = Integer.parseInt(request.params("id"));
-            Department department = departmentDao.findById(departmentId);
-
-            List<News> allNews;
-            allNews = newsDao.getAllDepartmentNews(departmentId);
-            response.type("application/json");
-            return gson.toJson(allNews);
-        });
+//        get("/department/:id/news", "application/json",(request, response) -> {
+//            int departmentId = Integer.parseInt(request.params("id"));
+//            Department department = departmentDao.findById(departmentId);
+//
+//            List<News> allNews;
+//            allNews = newsDao.getAllDepartmentNews(departmentId);
+//            response.type("application/json");
+//            return gson.toJson(allNews);
+//        });
 
         post("/users/new", "application/json", (request, response) -> {
             User user = gson.fromJson(request.body(), User.class);
@@ -64,6 +64,11 @@ public class App {
             response.status(201);
             response.type("application/json");
             return gson.toJson(user);
+        });
+
+        get("/users", "application/json", (request, response) -> {
+            response.type("application/json");
+            return gson.toJson(userDao.getAll());
         });
     }
 }
