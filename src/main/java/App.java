@@ -90,5 +90,12 @@ public class App {
             response.type("application/json");
             return gson.toJson(newsDao.getAll());
         });
+
+        get("/news/:id", "application/json",(request, response) -> {
+            response.type("application/json");
+            int departmentId = Integer.parseInt(request.params("id"));
+            response.type("application/json");
+            return gson.toJson(newsDao.findById(departmentId));
+        });
     }
 }
