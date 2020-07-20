@@ -4,6 +4,7 @@ import dao.Sql2oDepartmentDao;
 import dao.Sql2oNewsDao;
 import models.Department;
 import models.News;
+import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -55,6 +56,14 @@ public class App {
             allNews = newsDao.getAllDepartmentNews(departmentId);
             response.type("application/json");
             return gson.toJson(allNews);
+        });
+
+        post("/users/new", "application/json", (request, response) -> {
+            User user = gson.fromJson(request.body(), User.class);
+            userDao.add(user);
+            response.status(201);
+            response.type("application/json");
+            return gson.toJson(user);
         });
     }
 }
