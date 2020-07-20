@@ -77,5 +77,14 @@ public class App {
             response.type("application/json");
             return gson.toJson(userDao.findById(departmentId));
         });
+
+        post("/news/new", "application/json", (request, response) -> {
+            News news = gson.fromJson(request.body(), News.class);
+            newsDao.add(news);
+            response.status(201);
+            response.type("application/json");
+            return gson.toJson(news);
+        });
+
     }
 }
