@@ -64,7 +64,7 @@ public class Sql2oNewsDao implements NewsDao {
     }
 
     @Override
-    public List<News> getAllDepartmentNews(int newsid) {
+    public List<Department> getAllDepartmentNews(int newsid) {
         ArrayList<Department> departments = new ArrayList<>();
 
         String joinQuery ="SELECT departmentid FROM departments_news WHERE newsid = :newsId";
