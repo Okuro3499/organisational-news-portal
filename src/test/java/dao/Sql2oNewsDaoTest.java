@@ -39,6 +39,25 @@ public class Sql2oNewsDaoTest {
     }
 
     @Test
+    public void addNewsToDepartmentAddsNewsCorrectly() throws Exception {
+
+        Department testDepartment = setupDepartment();
+        Department altDepartment = setupAltDepartment();
+
+        departmentDao.add(testDepartment);
+        departmentDao.add(altDepartment);
+
+        News testNews = setupNews();
+
+        newsDao.add(testNews);
+
+        newsDao.addNewsToDepartment(testNews, testDepartment);
+        newsDao.addNewsToDepartment(testNews, altDepartment);
+
+        assertEquals(2, newsDao.getAllDepartmentNews(testNews.getId()).size());
+    }
+
+    @Test
     public void addedNewsAreReturnedFromGetAll() throws Exception {
         News testNews = setupNews();
         assertEquals(1, newsDao.getAll().size());
@@ -49,7 +68,7 @@ public class Sql2oNewsDaoTest {
         Department testDepartment = setupDepartment();
         News testNews1 = setupNewsForDepartment();
         News testNews2 = setupNewsForDepartment();
-        assertEquals(0, newsDao.getAllNewsByDepartments(testDepartment.getId()).size());
+        assertEquals(0, newsDao.getAllDepartmentNews(testDepartment.getId()).size());
     }
 
     @Test
@@ -86,5 +105,11 @@ public class Sql2oNewsDaoTest {
         News news= new News("Sushi", "New recipe Unveiled", 5);
         newsDao.add(news);
         return news;
+    }
+
+    public Department setupAltDepartment() {
+        Department department = new Department("Human Resource", "check Employees welfare", 4 );
+        departmentDao.add(department);
+        return department;
     }
 }

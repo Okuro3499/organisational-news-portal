@@ -6,6 +6,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -63,12 +64,31 @@ public class Sql2oNewsDao implements NewsDao {
     }
 
     @Override
-    public List<News> getAllNewsByDepartments(int departmentid) {
+    public List<Department> getAllDepartmentNews(int newsid) {
+        ArrayList<Department> departments = new ArrayList<>();
+
+        String joinQuery ="SELECT departmentid FROM departments_news WHERE newsid = :newsId";
+
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM news WHERE departmentid = :departmentId")
-                    .addParameter("departmentId", departmentid)
-                    .executeAndFetch(News.class);
+            List<Integer> allDepartmentIds = con.createQuery(joinQuery)
+                    .addParameter("newsId", newsid)
+                    .executeAndFetch(Integer.class);
+            for(Integer departmentId : allDepartmentIds) {
+                String departmentQuery = "SELECT * FROM department WHERE id = :departmentId";
+                departments.add(
+                        con.createQuery(departmentQuery)
+                                .addParameter("departmentId", departmentId)
+                                .executeAndFetchFirst(Department.class));
+            }
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
         }
+        return departments;
+//        try (Connection con = sql2o.open()) {
+//            return con.createQuery("SELECT * FROM news WHERE departmentid = :departmentId")
+//                    .addParameter("departmentId", departmentid)
+//                    .executeAndFetch(Department.class);
+//        }catch (Sql2oException ex) {
     }
 
     @Override
