@@ -1,5 +1,6 @@
 package dao;
 
+import models.Department;
 import models.News;
 import org.junit.After;
 import org.junit.Before;
@@ -43,9 +44,45 @@ public class Sql2oNewsDaoTest {
         assertEquals(1, newsDao.getAll().size());
     }
 
+    @Test
+    public void getNewsInDepartment() {
+        Department testDepartment = setupDepartment();
+        News testNews1 = setupNewsForDepartment();
+        News testNews2 = setupNewsForDepartment();
+        assertEquals(0, newsDao.getAllNewsByDepartments(testDepartment.getId()).size());
+    }
+
+    @Test
+    public void deleteById() {
+        News testNews = setupNews();
+        News testNews2 = setupNews();
+        assertEquals(2, newsDao.getAll().size());
+        newsDao.deleteById(testNews.getId());
+        assertEquals(1, newsDao.getAll().size());
+    }
+
+    @Test
+    public void clearAll() {
+        News testNews = setupNews();
+        News testNews2 = setupNews();
+        newsDao.clearAll();
+        assertEquals(0, newsDao.getAll().size());
+    }
 
     //helpers
     public News setupNews() {
+        News news= new News("Sushi", "New recipe Unveiled", 5);
+        newsDao.add(news);
+        return news;
+    }
+
+    public Department setupDepartment() {
+        Department department = new Department("Finance", "Maintains Financial records",13);
+        departmentDao.add(department);
+        return department;
+    }
+
+    public News setupNewsForDepartment() {
         News news= new News("Sushi", "New recipe Unveiled", 5);
         newsDao.add(news);
         return news;
