@@ -50,10 +50,10 @@ public class App {
 
 //        get("/department/:id/news", "application/json",(request, response) -> {
 //            int departmentId = Integer.parseInt(request.params("id"));
-//            Department department = departmentDao.findById(departmentId);
+//            Department departmentToFind = departmentDao.findById(departmentId);
 //
 //            List<News> allNews;
-//            allNews = newsDao.getAllDepartmentNews(departmentId);
+//            allNews = newsDao.getAllDepartmentNews();
 //            response.type("application/json");
 //            return gson.toJson(allNews);
 //        });
@@ -96,6 +96,11 @@ public class App {
             int departmentId = Integer.parseInt(request.params("id"));
             response.type("application/json");
             return gson.toJson(newsDao.findById(departmentId));
+        });
+
+        //filters
+        after((request, response) -> {
+            response.type("application/json");
         });
     }
 }
