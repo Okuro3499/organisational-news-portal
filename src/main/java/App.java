@@ -52,7 +52,7 @@ public class App {
             int departmentId = Integer.parseInt(request.params("id"));
             Department departmentToFind = departmentDao.findById(departmentId);
 
-            List<News> allNews;
+            List<Department> allNews;
             allNews = newsDao.getAllDepartmentNews(departmentId);
             response.type("application/json");
             return gson.toJson(allNews);
